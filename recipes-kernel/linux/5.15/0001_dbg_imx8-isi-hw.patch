@@ -1,0 +1,64 @@
+diff --git a/drivers/staging/media/imx/imx8-isi-hw.c b/drivers/staging/media/imx/imx8-isi-hw.c
+index 08b57fe28f86..9efd1b79b0f5 100644
+--- a/drivers/staging/media/imx/imx8-isi-hw.c
++++ b/drivers/staging/media/imx/imx8-isi-hw.c
+@@ -16,6 +16,8 @@ MODULE_VERSION("1.0");
+ 
+ #define	ISI_DOWNSCALE_THRESHOLD		0x4000
+ 
++#define DEBUG
++
+ #ifdef DEBUG
+ void dump_isi_regs(struct mxc_isi_dev *mxc_isi)
+ {
+@@ -245,6 +247,7 @@ void mxc_isi_channel_set_outbuf(struct mxc_isi_dev *mxc_isi,
+ 		buf->id = MXC_ISI_BUF2;
+ 	}
+ 	writel(val, mxc_isi->regs + CHNL_OUT_BUF_CTRL);
++	dump_isi_regs(mxc_isi);
+ }
+ EXPORT_SYMBOL_GPL(mxc_isi_channel_set_outbuf);
+ 
+@@ -316,6 +319,7 @@ void mxc_isi_channel_source_config(struct mxc_isi_dev *mxc_isi)
+ 	}
+ 
+ 	writel(val, mxc_isi->regs + CHNL_CTRL);
++	dump_isi_regs(mxc_isi);
+ }
+ EXPORT_SYMBOL_GPL(mxc_isi_channel_source_config);
+ 
+@@ -366,7 +370,7 @@ void mxc_isi_channel_set_csc(struct mxc_isi_dev *mxc_isi,
+ 		val |= (CHNL_IMG_CTRL_CSC_MODE_RGB2YCBCR << CHNL_IMG_CTRL_CSC_MODE_OFFSET);
+ 	} else {
+ 		/* Bypass CSC */
+-		pr_info("bypass csc\n");
++		pr_info("%s[%d]: bypass csc\n", __func__, __LINE__);
+ 		mxc_isi->cscen = 0;
+ 		val |= CHNL_IMG_CTRL_CSC_BYPASS_ENABLE;
+ 	}
+@@ -384,6 +388,7 @@ void mxc_isi_channel_set_csc(struct mxc_isi_dev *mxc_isi,
+ 	}
+ 
+ 	writel(val, mxc_isi->regs + CHNL_IMG_CTRL);
++	dump_isi_regs(mxc_isi);
+ }
+ 
+ void mxc_isi_channel_set_alpha_roi0(struct mxc_isi_dev *mxc_isi,
+@@ -670,6 +675,8 @@ void mxc_isi_channel_config(struct mxc_isi_dev *mxc_isi,
+ 		val |= (CHNL_CTRL_CHNL_BYPASS_ENABLE << CHNL_CTRL_CHNL_BYPASS_OFFSET);
+ 
+ 	writel(val, mxc_isi->regs + CHNL_CTRL);
++
++	dump_isi_regs(mxc_isi);
+ }
+ EXPORT_SYMBOL_GPL(mxc_isi_channel_config);
+ 
+@@ -708,7 +715,7 @@ void mxc_isi_channel_enable(struct mxc_isi_dev *mxc_isi, bool m2m_enabled)
+ 	}
+ 
+ 	dump_isi_regs(mxc_isi);
+-	msleep(300);
++	//msleep(300);
+ }
+ EXPORT_SYMBOL_GPL(mxc_isi_channel_enable);
+ 

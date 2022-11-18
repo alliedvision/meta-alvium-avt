@@ -1,0 +1,206 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+/*
+ * Copyright 2021 AVT
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+#include "imx8mq-evk.dts"
+
+
+/* delete OV-Cam 1 */
+&i2c2 {
+	/delete-node/ov5640_mipi@3c;
+};
+
+/* delete OV-Cam 2 */
+&i2c1 {
+	/delete-node/ov5640_mipi2@3c;
+};
+
+
+/* delete endpoint for OV-Cam 1 */
+&mipi1_sensor_ep {
+	/delete-node/remote-endpoint;
+};
+
+/* delete endpoint for OV-Cam 2 */
+&mipi2_sensor_ep {
+	/delete-node/remote-endpoint;
+};
+
+/* remember: switch csi-bridge into two-8bit-sensor-mode to support 
+   two camera interfaces simultaniously */
+   
+&csi1_bridge {
+	/delete-property/fsl,two-8bit-sensor-mode;
+};
+
+&csi2_bridge {
+	/delete-property/fsl,two-8bit-sensor-mode;
+};
+
+/*
+&csi1_bridge {
+	fsl,two-8bit-sensor-mode;
+};
+
+&csi2_bridge {
+	fsl,two-8bit-sensor-mode;
+};
+*/
+
+/* add first Alvium Cam */
+&i2c2 {
+	/* clock-frequency = <400000>;*/
+
+	avt_camera_1@3c {
+		compatible = "alliedvision,avt3"; 
+		reg = <0x3c>;
+		csi_id = <0x00>;
+		status = "okay";
+
+		mipi_csi;
+
+		bcrm_wait_timeout = <5222>; 
+		streamon_delay = <50>; 
+		x_force_reset_on_init;
+
+		avt-ignore-yuv420_8_leg_avail;
+		avt-ignore-yuv420_8_avail;
+		avt-ignore-yuv420_10_avail;
+		avt-ignore-yuv420_8_csps_avail;
+		avt-ignore-yuv420_10_csps_avail;
+		x_avt-ignore-yuv422_8_avail;
+		avt-ignore-yuv422_10_avail;
+		x_avt-ignore-rgb888_avail;
+		avt-ignore-rgb666_avail;
+		avt-ignore-rgb565_avail;
+		avt-ignore-rgb555_avail;
+		avt-ignore-rgb444_avail;
+		avt-ignore-raw6_avail;
+		avt-ignore-raw7_avail;
+		x_avt-ignore-raw8_avail;
+		x_avt-ignore-raw10_avail;
+		avt-ignore-raw12_avail;
+		avt-ignore-raw14_avail;
+
+		port {
+			avt_ep_1: endpoint {
+				/*data-lanes = <1>;*/
+				/*data-lanes = <1 2>; */
+				data-lanes = <1 2 3 4>;
+				clock-lanes = <0>;
+				link-frequencies = /bits/ 64 <750000000>;
+				/*max-lane-frequency = /bits/ 64 <500000000>;
+				max-pixel-frequency = /bits/ 64 <266000000>;
+				max-data-rate = /bits/ 64 <0>;*/
+				remote-endpoint = <&mipi1_sensor_ep>;
+			};
+		};
+	};
+
+	ina260_mipi1: power-sensor@44 {
+		compatible = "ti,ina260";
+		status = "okay";
+		reg = <0x44>;
+		shunt-resistor = <4500>;
+	};
+};
+
+
+/* add second Alvium Cam */
+&i2c1 {
+	clock-frequency = <100000>;
+
+	avt_camera_2@3c {
+		compatible = "alliedvision,avt3"; 
+		reg = <0x3c>;
+		csi_id = <0x01>;
+		status = "okay";
+		powerdown-gpios = <&gpio1 5 GPIO_ACTIVE_HIGH>;
+
+		mipi_csi;
+
+		bcrm_wait_timeout = <5222>; 
+		streamon_delay = <50>; 
+		x_force_reset_on_init;
+
+		avt-ignore-yuv420_8_leg_avail;
+		avt-ignore-yuv420_8_avail;
+		avt-ignore-yuv420_10_avail;
+		avt-ignore-yuv420_8_csps_avail;
+		avt-ignore-yuv420_10_csps_avail;
+		x_avt-ignore-yuv422_8_avail;
+		avt-ignore-yuv422_10_avail;
+		x_avt-ignore-rgb888_avail;
+		avt-ignore-rgb666_avail;
+		avt-ignore-rgb565_avail;
+		avt-ignore-rgb555_avail;
+		avt-ignore-rgb444_avail;
+		avt-ignore-raw6_avail;
+		avt-ignore-raw7_avail;
+		x_avt-ignore-raw8_avail;
+		x_avt-ignore-raw10_avail;
+		avt-ignore-raw12_avail;
+		avt-ignore-raw14_avail;
+
+		port {
+			avt_ep_2: endpoint {
+				/* data-lanes = <1>; */
+				/* data-lanes = <1 2>; */
+				data-lanes = <1 2 3 4>;
+				clock-lanes = <0>;
+				link-frequencies = /bits/ 64 <750000000>;
+				/*max-lane-frequency = /bits/ 64 <500000000>;
+				max-pixel-frequency = /bits/ 64 <266000000>;
+				max-data-rate = /bits/ 64 <0>;*/
+				remote-endpoint = <&mipi2_sensor_ep>;
+			};
+		};
+	};
+
+	ina260_mipi2: power-sensor@44 {
+		compatible = "ti,ina260";
+		status = "okay";
+		reg = <0x44>;
+		shunt-resistor = <4500>;
+	};
+};
+
+
+&mipi1_sensor_ep {
+	remote-endpoint = <&avt_ep_1>;
+	data-lanes = <1 2 3 4>;
+	clock-lanes = <0>;
+	link-frequencies = /bits/ 64 <500000000>;
+	bus-type = <4>;
+};
+
+&mipi_csi_1 {
+	assigned-clock-rates = <500000000>, <100000000>, <66000000>;
+	status = "okay";
+};
+
+
+&mipi2_sensor_ep {
+	remote-endpoint = <&avt_ep_2>;
+	data-lanes = <1 2 3 4>;
+	clock-lanes = <0>;
+	link-frequencies = /bits/ 64 <500000000>;
+	bus-type = <4>;
+};
+
+&mipi_csi_2 {
+	assigned-clock-rates = <500000000>, <100000000>, <66000000>;
+	status = "okay";
+};
+

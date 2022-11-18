@@ -1,0 +1,368 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+/*
+ * Copyright 2020-2021 NXP
+ * Copyright 2020-2021 Avnet EMG GmbH                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+#include "imx8mp-evk.dts"
+
+#include "mipi_timing.h"
+
+&i2c2 {
+	clock-frequency = <400000>;
+
+	/delete-node/ov5640_mipi@3c;
+
+	fpdlink_0: ds90ub954@30 {
+		compatible = "ti,ds90ub954";
+		reg = <0x30>;
+		status = "okay";
+		csi-lane-count = <4>;
+		csi-lane-speed = <400>;
+
+		serializers {
+			status = "okay";
+			num-channels = <1>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			serializer@0 {
+				status = "okay";
+				rx-channel=<0>;
+				i2c-address=<0x18>;
+				csi-lane-count = <4>;
+			};
+		};
+	};
+
+	avt_camera_0: avt_camera_0@3c {
+		compatible = "alliedvision,avt3"; /*"alliedvision,avt_csi2";*/
+		reg = <0x3c>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_csi0_pwn>, <&pinctrl_csi0_rst>, <&pinctrl_csi_mclk>;
+		clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
+		clock-names = "csi_mclk";
+		assigned-clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
+		assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
+		assigned-clock-rates = <24000000>;
+		mipi_csi;
+		csi_id = <0>;
+		/*pwn-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
+		rst-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;*/
+		mclk = <24000000>;
+		mclk_source = <0>;
+		/*powerdown-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
+		reset-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;*/
+
+		bcrm_wait_timeout = <5111>; 
+		streamon_delay = <80>; 
+		x_force_reset_on_init;
+
+		avt-ignore-yuv420_8_leg_avail;
+		avt-ignore-yuv420_8_avail;
+		avt-ignore-yuv420_10_avail;
+		avt-ignore-yuv420_8_csps_avail;
+		avt-ignore-yuv420_10_csps_avail;
+		avt-ignore-yuv422_8_avail;
+		avt-ignore-yuv422_10_avail;
+		x_avt-ignore-rgb888_avail;
+		avt-ignore-rgb666_avail;
+		avt-ignore-rgb565_avail;
+		avt-ignore-rgb555_avail;
+		avt-ignore-rgb444_avail;
+		avt-ignore-raw6_avail;
+		avt-ignore-raw7_avail;
+		x_avt-ignore-raw8_avail;
+		x_avt-ignore-raw10_avail;
+		avt-ignore-raw12_avail;
+		avt-ignore-raw14_avail;
+
+		status = "okay";
+
+		port {
+			avt_mipi_ep_0: endpoint {
+				data-lanes = <AVT_CAMERA_DL0 AVT_CAMERA_DL1 AVT_CAMERA_DL2 AVT_CAMERA_DL3>;
+				clock-lanes = <0>;
+				link-frequencies = /bits/ 64 <AVT_LINK_FPD_LINK_FREQUENCY>;
+				/*max-pixel-frequency = /bits/ 64 <266000000>;*/
+				remote-endpoint = <&mipi_csi0_ep>;
+			};
+		};
+	};
+
+	cam_ina_0: power_sensor0@44 {
+		compatible = "ti,ina260";
+		status = "okay";
+		reg = <0x44>;
+		shunt-resistor = <0x1194>;
+	};
+};
+
+&i2c3 {
+
+	clock-frequency = <400000>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_i2c3>;
+	status = "okay";
+
+	/delete-node/ov5640_mipi@3c;
+
+	fpdlink_1: ds90ub954@30 {
+		compatible = "ti,ds90ub954";
+		reg = <0x30>;
+		status = "okay";
+		csi-lane-count = <4>;
+		csi-lane-speed = <400>;
+
+		serializers {
+			status = "okay";
+			num-channels = <1>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			serializer@0 {
+				status = "okay";
+				rx-channel=<0>;
+				i2c-address=<0x18>;
+				csi-lane-count = <4>;
+			};
+		};
+	};
+
+	avt_camera_1@3c {
+		status = "okay";
+		compatible = "alliedvision,avt3"; /*"alliedvision,avt_csi2";*/
+		reg = <0x3c>;
+		/*powerdown-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
+		reset-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;*/
+		clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
+		clock-names = "csi_mclk";
+		assigned-clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
+		assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
+		assigned-clock-rates = <24000000>;
+		mipi_csi;
+		csi_id = <1>;
+
+		mclk = <24000000>;
+		mclk_source = <0>;
+		bcrm_wait_timeout = <5222>; 
+		streamon_delay = <80>; 
+		x_force_reset_on_init;
+
+		avt-ignore-yuv420_8_leg_avail;
+		avt-ignore-yuv420_8_avail;
+		avt-ignore-yuv420_10_avail;
+		avt-ignore-yuv420_8_csps_avail;
+		avt-ignore-yuv420_10_csps_avail;
+		avt-ignore-yuv422_8_avail;
+		avt-ignore-yuv422_10_avail;
+		x_avt-ignore-rgb888_avail;
+		avt-ignore-rgb666_avail;
+		avt-ignore-rgb565_avail;
+		avt-ignore-rgb555_avail;
+		avt-ignore-rgb444_avail;
+		avt-ignore-raw6_avail;
+		avt-ignore-raw7_avail;
+		x_avt-ignore-raw8_avail;
+		x_avt-ignore-raw10_avail;
+		avt-ignore-raw12_avail;
+		avt-ignore-raw14_avail;
+
+		port {
+			avt_mipi_ep_1: endpoint {
+				data-lanes = <AVT_CAMERA_DL0 AVT_CAMERA_DL1 AVT_CAMERA_DL2 AVT_CAMERA_DL3>;
+				clock-lanes = <0>;
+				link-frequencies = /bits/ 64 <AVT_LINK_FPD_LINK_FREQUENCY>;
+				/*max-pixel-frequency = /bits/ 64 <266000000>;*/
+				remote-endpoint = <&mipi_csi1_ep>;
+			};
+		};
+	};
+
+	cam_ina_1: power_sensor1@44 {
+		compatible = "ti,ina260";
+		status = "okay";
+		reg = <0x44>;
+		shunt-resistor = <0x1194>;
+	};
+};
+
+&cameradev {
+	status = "okay";
+};
+
+&isi_0 {
+	/*assigned-clock-rates = <750000000>, <500000000>;*/
+	status = "okay";
+	disable_resolution_check;
+    dma-coherent;
+};
+
+&isi_1 {
+	/*assigned-clock-rates = <750000000>, <500000000>;*/
+	status = "okay";
+	disable_resolution_check;
+    dma-coherent;
+};
+
+&isp_0 {
+	status = "disabled";
+    dma-coherent;
+};
+
+&isp_1 {
+	status = "disabled";
+    dma-coherent;
+};
+
+
+&dewarp {
+	status = "okay";
+};
+
+&mipi_csi_0 {
+	status = "okay";
+	clock-frequency = <AVT_LINK_FPD_LINK_FREQUENCY>;
+	/*assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_266M>;*/
+	assigned-clock-rates = <CSI_ASSIGNED_CLOCK_RATES>;
+
+	port@0 {
+		mipi_csi0_ep: endpoint {
+			remote-endpoint = <&avt_mipi_ep_0>;
+			data-lanes = <CSI_DATA_LANES>;
+			csis-hs-settle = <CSIS_HS_SETTLE_FPD_LINK>;
+			csis-clk-settle = <CSIS_CLK_SETTLE>;
+			csis-wclk;
+			/*swap_dpdn_clk;
+			swap_dpdn_dat;
+			data_lane_hs_rx_delay = <0>;
+			clk_lane_hs_rx_delay = <0>;*/
+		};
+	};
+};
+
+&mipi_csi_1 {
+	status = "okay";
+	clock-frequency = <AVT_LINK_FPD_LINK_FREQUENCY>;
+	assigned-clock-rates = <CSI_ASSIGNED_CLOCK_RATES>;
+
+	port@1 {
+		mipi_csi1_ep: endpoint {
+			remote-endpoint = <&avt_mipi_ep_1>;
+			data-lanes = <CSI_DATA_LANES>;
+			csis-hs-settle = <CSIS_HS_SETTLE_FPD_LINK>;
+			csis-clk-settle = <CSIS_CLK_SETTLE>;
+			csis-wclk;
+			/*swap_dpdn_clk;
+			swap_dpdn_dat;
+			data_lane_hs_rx_delay = <0>;
+			clk_lane_hs_rx_delay = <0>;*/
+		};
+	};
+};
+
+&mipi_dsi {
+	status = "okay";
+};
+
+
+/ {
+	gpio-keys {
+		compatible = "gpio-keys";
+		autorepeat;
+
+		up {
+			label = "GPIO Key NEXT";
+			linux,code = <103>;
+			gpios = <&pca6416 3 GPIO_ACTIVE_HIGH>;
+		};
+	};
+};
+
+
+&ecspi2 {
+	/*
+	#address-cells = <1>;
+	#size-cells = <0>;
+	fsl,spi-num-chipselects = <1>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_ecspi2 &pinctrl_ecspi2_cs>;
+	cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
+	*/
+	status = "okay";
+
+	/delete-node/spidev1;
+
+	tlc59711pwm:tlc59711pwm@0 {
+		reg = <0>;
+		compatible = "ti,tlc59711-pwm";
+		spi-max-frequency = <500000>;
+		status = "okay";
+	};
+
+	tlc5947pwm:tlc5947pwm@0 {             
+		reg = <0x00>;           
+		compatible = "ti,tlc5947-pwm";
+		spi-max-frequency = <20000000>;
+		xlat-gpio = <&pca6416 13 GPIO_ACTIVE_HIGH>; /* /sys/class/gpio/gpio509 */     
+		blank-gpio = <&pca6416 14 GPIO_ACTIVE_LOW>;      /* /sys/class/gpio/gpio509 */
+		status = "disabled";         
+	};    
+
+	/*
+	spidev1: spi@0 {
+			reg = <0>;
+			compatible = "rohm,dh2228fv";
+			spi-max-frequency = <500000>;
+	};
+	*/
+};
+
+/*
+A table for MIPI clock frequency and register setting of HSSETTLE[7:0] and CLKSETTLECTL[1:0] had been missed in iMX7D reference manual.
+
+MIPI Serial clock Frequency (MHz)	HSSETTLE[7:0]	CLKSETTLECTL[1:0]
+1500	                                33              0
+1490~1450	                            32              0
+1440~1410	                            31              0
+1400~1360	                            30              0
+1350~1320	                            29              0
+1310~1270	                            28              0
+1260~1230	                            27              0
+1220~1180	                            26              0
+1170~1130	                            25              0
+1120~1090	                            24              0
+1080~1040	                            23              0
+1030~1000	                            22              0
+990~950	                                21              0
+940~910	                                20              0
+900~860	                                19              0
+850~820	                                18              0
+810~770	                                17              0
+760~730	                                16              0
+720~680	                                15              0
+670~640	                                14              0
+630~590	                                13              0
+580~550	                                12              0
+540~500	                                11              0
+490~460	                                10              0
+450~410	                                 9              0
+400~370 	                             8              0
+360~320 								 7              0
+310~280	                                 6              0
+270~230	                                 5              0
+220~190	                                 4              0
+180~140 	                             3              0
+130~100  	                             2              0
+90~80	                                 1              0
+ */

@@ -1,0 +1,3 @@
+DEFAULT_TIMEZONE = "Europe/Paris"
+#INSTALL_TIMEZONE_FILE ?= "1"
+
