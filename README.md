@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 meta-alvium-avt
-=======
-meta-alvium-avt-honister
->>>>>>> 23aa21c5fa82383ed9d5e94228a68f1ebf7192dd
 =================
 
 This layer provides support for Alvium MIPI-CSI2 cameras on NXP i.MX8MP and Xilinx ZynqMP.
@@ -12,11 +8,7 @@ Maintainers, Mailing list, Patches
 ==================================
 
 Please send any patches, pull requests, comments or questions for this layer to
-<<<<<<< HEAD
 email address martin.hecht@avnet.eu with ['meta-alvium-avt'] in the subject.
-=======
-email address martin.hecht@avnet.eu with ['meta-alvium'] in the subject.
->>>>>>> 23aa21c5fa82383ed9d5e94228a68f1ebf7192dd
 
 
 Maintainers:
@@ -73,22 +65,10 @@ ToDo: complete dependencies
 How to start with the cameras on i.MX8MP-EVK
 =====================
 
-<<<<<<< HEAD
+
 cat  /sys/bus/i2c/devices/1-003c/device_temperature
 
 e.g. for Alvium 1500c500c on Port CSI1 of imx8mp-evk:
 
 v4l2-ctl -d /dev/v4l-subdev2 --set-ctrl exposure=20000000,gain=100,brightness=0 --set-crop top=0,left=0,width=1920,height=1080
 gst-launch-1.0 v4l2src device=/dev/video3 ! video/x-raw,width=1920,height=1080,framerate=30/1,io-mode=dmabuf ! waylandsink sync=false -v
-=======
-change devicetree to imx8mp-evk-alvium.dtb
-
-cat  /sys/bus/i2c/devices/1-003c/device_temperature
-
-e.g. for Alvium 1800c040c on Port CSI1 of imx8mp-evk:
-gst-launch-1.0 v4l2src device=/dev/video3 ! video/x-raw,format=YUY2,width=720,height=480,framerate='(fraction)30/1' ! waylandsink
->>>>>>> 23aa21c5fa82383ed9d5e94228a68f1ebf7192dd
-
-
-
-
