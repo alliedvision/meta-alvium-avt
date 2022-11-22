@@ -137,6 +137,7 @@ KERNEL_DEVICETREE:append:imx8mqevk = " \
 	freescale/imx8mq-evk-alvium.dtb \
 	"
 
+
 #####KERNEL_DEVICETREE:sm2s-imx8mp += " \
 #####		msc/imx8mp/overlay-cam0-alvium.dtb \
 #####		msc/imx8mp/overlay-cam1-alvium.dtb \

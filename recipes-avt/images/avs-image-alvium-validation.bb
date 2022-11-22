@@ -118,3 +118,9 @@ PACKAGECONFIG_pn-kmscube-master += " gstreamer "
 #PACKAGECONFIG_pn-weston:append = " xwayland screenshare shell-desktop image-jpeg "
 PACKAGECONFIG_pn-v4l-utils:append = " qv4l2 "
 #PREFERRED_VERSION:v4l-utils ?= "1.22%"
+
+
+IMAGE_BOOT_FILES:append:imx8mpevk = " imx8mp-evk-alvium.dtb "
+	
+IMAGE_FSTYPES = "wic.bmap wic.bz2 tar.bz2"
+
