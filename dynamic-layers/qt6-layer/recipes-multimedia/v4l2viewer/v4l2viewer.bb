@@ -13,11 +13,11 @@ SRCREV = "${AUTOREV}"
 
 require recipes-avt/common/avt_git.inc
 
-SRC_URI += " \
-           file://0001-Fixed-installation-for-yocto.patch \
-           file://0002-Use-mmap-by-default-because-the-imx8-does-not-suppor.patch \
-           "
-
 S = "${WORKDIR}/git"
 
-PV = "2022-1-beta+git${SRCPV}"
+PV = "2.0.0-beta+git${SRCPV}"
+
+do_install() {
+	install -d ${D}${bindir}
+	install -m 755 ${B}/V4L2Viewer ${D}${bindir}/V4L2Viewer
+}
