@@ -62,7 +62,7 @@
 		avt-ignore-raw7_avail;
 		x_avt-ignore-raw8_avail;
 		x_avt-ignore-raw10_avail;
-		avt-ignore-raw12_avail;
+		x_avt-ignore-raw12_avail;
 		avt-ignore-raw14_avail;
 
 		status = "okay";
@@ -131,7 +131,7 @@
 		avt-ignore-raw7_avail;
 		x_avt-ignore-raw8_avail;
 		x_avt-ignore-raw10_avail;
-		avt-ignore-raw12_avail;
+		x_avt-ignore-raw12_avail;
 		avt-ignore-raw14_avail;
 
 		port {
