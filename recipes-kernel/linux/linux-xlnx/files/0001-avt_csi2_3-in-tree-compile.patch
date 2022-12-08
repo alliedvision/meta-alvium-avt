@@ -1,0 +1,45 @@
+From 3b0a74642d77fc6846f437f97685fe4d94170da1 Mon Sep 17 00:00:00 2001
+From: Martin Hecht <martin.hecht@avnet.eu>
+Date: Wed, 26 May 2021 22:24:34 +0000
+Subject: [PATCH] avt_csi2 in tree compile
+
+---
+ drivers/media/i2c/Kconfig         |   12 +
+ drivers/media/i2c/Makefile        |    2 +
+ 5 files changed, 7081 insertions(+)
+
+diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
+index 7eee1812bba3..1fd4a2d685db 100644
+--- a/drivers/media/i2c/Kconfig
++++ b/drivers/media/i2c/Kconfig
+@@ -620,6 +620,18 @@ config VIDEO_IMX355
+ 	  To compile this driver as a module, choose M here: the
+ 	  module will be called imx355.
+ 
++
++config VIDEO_ALVIUMCSI2
++	tristate "Allied Vision Alvium sensor support"
++	depends on VIDEO_V4L2 && I2C
++	depends on MEDIA_CAMERA_SUPPORT
++	help
++	  This is a Video4Linux2 sensor driver for the Allied 
++	  Vision Alvium family.
++
++	  To compile this driver as a module, choose M here: the
++	  module will be called avt_csi2.
++
+ config VIDEO_OV2640
+ 	tristate "OmniVision OV2640 sensor support"
+ 	depends on VIDEO_V4L2 && I2C
+diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
+index beb170b002dc..03957c55aea7 100644
+--- a/drivers/media/i2c/Makefile
++++ b/drivers/media/i2c/Makefile
+@@ -117,3 +117,5 @@ obj-$(CONFIG_VIDEO_IMX355)	+= imx355.o
+ obj-$(CONFIG_VIDEO_ST_MIPID02) += st-mipid02.o
+ 
+ obj-$(CONFIG_SDR_MAX2175) += max2175.o
++obj-$(CONFIG_VIDEO_ALVIUMCSI2) += avt-csi2-3.o
++
+-- 
+2.25.1
