@@ -1,7 +1,7 @@
 
 #${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'weston-xwayland matchbox-terminal', '', d)}"
 
-require ${BSPDIR}/sources/poky/meta/recipes-graphics/images/core-image-weston.bb
+require recipes-graphics/images/core-image-weston.bb
 
 SUMMARY = "A very basic Wayland image with a terminal and some v4l2 tools to test the alvium v4l2 driver"
 DESCRIPTION = "A weston minimal v4l2 demo image for Testing."

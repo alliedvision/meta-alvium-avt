@@ -5,7 +5,6 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}/imx:${THISDIR}/5.15:${THISDIR}/file
 
 SRC_URI += " \ 
 	file://libcsi_ioctl.h;subdir=git/include/uapi/linux/ \	
-	file://alvium_kernel_mod.cfg \
 	file://iio_ina.cfg \
 	file://adv_v4l_dbg.cfg \
 	"

@@ -31,3 +31,4 @@ do_patch:append() {
    cp -vfr ${B}/../include  ${STAGING_KERNEL_DIR}
 }
 
+do_fetch[depends] = "avt-csi2-3-xlnx-helper:do_install"

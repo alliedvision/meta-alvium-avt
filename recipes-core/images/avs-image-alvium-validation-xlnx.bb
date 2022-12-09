@@ -78,8 +78,8 @@ CORE_IMAGE_EXTRA_INSTALL += " \
 
 MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "kernel-modules"
 
-LICENSE_FLAGS_WHITELIST += "commercial_pmu-rom-native"
-LICENSE_FLAGS_WHITELIST += "xilinx_pmu-rom-native"
+LICENSE_FLAGS_ACCEPTED += "commercial_pmu-rom-native"
+LICENSE_FLAGS_ACCEPTED += "xilinx_pmu-rom-native"
 
 PACKAGECONFIG_pn-kmscube += " gstreamer "
 PACKAGECONFIG_pn-kmscube-master += " gstreamer "
