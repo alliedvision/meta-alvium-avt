@@ -6,11 +6,7 @@ inherit module
 
 AVT_GIT_REPO = "alvium-csi2-driver"
 AVT_GIT_BRANCH = "main"
-<<<<<<< HEAD
-SRCREV = "${AUTOREV}"
-=======
 SRCREV = "246b266e94ad8c8e521985a538fbfe83d4305ef3"
->>>>>>> 03069e7... avt-csi2-3: Set SRCREV to fixed commit and updated branch to main for release.
 
 #Use ssh instead of https, because the repo is currently private
 AVT_GIT_PROTOCOL = "ssh"
