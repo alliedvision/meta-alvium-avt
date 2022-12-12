@@ -6,10 +6,7 @@ inherit module
 
 AVT_GIT_REPO = "alvium-csi2-driver"
 AVT_GIT_BRANCH = "main"
-SRCREV = "246b266e94ad8c8e521985a538fbfe83d4305ef3"
-
-#Use ssh instead of https, because the repo is currently private
-AVT_GIT_PROTOCOL = "ssh"
+SRCREV = "e8f22da4fe6690efb1db2211c4d340a6b572a7f7"
 
 require recipes-avt/common/avt_git.inc
 

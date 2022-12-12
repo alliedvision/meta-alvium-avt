@@ -9,9 +9,13 @@ DEPENDS:append = " qtbase "
 
 AVT_GIT_REPO = "V4L2Viewer"
 AVT_GIT_BRANCH = "dev"
-SRCREV = "${AUTOREV}"
+SRCREV = "f225a38228add956fd894d075a7bf6db1cf4d535"
 
 require recipes-avt/common/avt_git.inc
+
+SRC_URI += " \
+            file://imx8mp-support.patch \
+           "
 
 S = "${WORKDIR}/git"
 
