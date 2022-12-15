@@ -36,7 +36,8 @@ CORE_IMAGE_EXTRA_INSTALL += " \
 			iproute2 htop \
 			curl lldpd \
 			"
-
+CORE_IMAGE_EXTRA_INSTALL += " qtwayland "
+CORE_IMAGE_EXTRA_INSTALL += " avt-csi2-3 "
 CORE_IMAGE_EXTRA_INSTALL += " v4l-utils "
 CORE_IMAGE_EXTRA_INSTALL += " v4l2viewer "
 CORE_IMAGE_EXTRA_INSTALL += " htop lsof "
