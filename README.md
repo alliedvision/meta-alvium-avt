@@ -10,13 +10,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 Maintainers, Mailing list, Patches
 ==================================
 
-Please send any patches, pull requests, comments or questions for this layer to
-email address martin.hecht@avnet.eu with ['meta-alvium-avt'] in the subject.
+For any patches or pull requests please use the Github pull requests.
+For comments or questions about this layer, please create an issue.
 
 
 Maintainers:
 
-	Martin Hecht <martin.hecht@avnet.eu>
+	Dennis Langenkamp <dennis.langenkamp@alliedvision.com>
+	Florian Kesseler <florian.kesseler@alliedvision.com>
 
 Dependencies
 ============
