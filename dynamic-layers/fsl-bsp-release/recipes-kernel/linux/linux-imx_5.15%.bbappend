@@ -1,18 +1,9 @@
-FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}/imx:${THISDIR}/5.15:${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}/imx:"
 #${THISDIR}/../avt-csi2-3/files/:${THISDIR}/../ds90ub95xq1/files/:"
 
 #$${THISDIR}/${PN}/files:${THISDIR}/${PN}/msc:${THISDIR}/${PV}:${THISDIR}/${LINUX_VERSION}:"
 
-SRC_URI += " \ 
-	file://libcsi_ioctl.h;subdir=git/include/uapi/linux/ \	
-	file://iio_ina.cfg \
-	file://adv_v4l_dbg.cfg \
-	"
-
-# to be removed for next lts kernel
-SRC_URI += " \ 
-    file://mipi-csi2.h;subdir=git/include/media \
-	"
+require recipes-kernel/linux/linux-avt-common.inc
 
 SRC_URI:append:imx8mpevk = " \
 	file://mipi_timing.h;subdir=git/arch/arm64/boot/dts/freescale \
