@@ -41,7 +41,6 @@ This layer depends on:
 	- meta-sdk
 	- meta-ml
 	- meta-v2x
-	- meta-nxp-demo-experience  /media/martin/20210810/allied_vision/imx-yocto-bsp/sources/meta-nxp-demo-experience  7
 
 
  - Layers from Xilinx:
