@@ -8,14 +8,11 @@ AVT_GIT_REPO = "alvium-csi2-driver"
 AVT_GIT_BRANCH = "main"
 SRCREV = "${AUTOREV}"
 
-#Use ssh instead of https, because the repo is currently private
-AVT_GIT_PROTOCOL = "ssh"
-
 require recipes-avt/common/avt_git.inc
 
 S = "${WORKDIR}/git"
 
-PV = "2022-1-beta+git${SRCPV}"
+PV = "2023-1-beta+git${SRCPV}"
 
 # The inherit of module.bbclass will automatically name module packages with
 # "kernel-module-" prefix as required by the oe-core build environment.
