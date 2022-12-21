@@ -8,13 +8,5 @@ require recipes-kernel/linux/linux-avt-common.inc
 SRC_URI += " \
 	file://drm_misc.cfg \
 	file://sensors.cfg \
+	file://0001-xilinx-dma-Disabled-userptr-streaming.patch \
 	"
-#	file://video_xilinx_modules.cfg \
-#	file://sensors.cfg \
-#
-
-do_patch:append() {
-   cp -vfr ${B}/../drivers  ${STAGING_KERNEL_DIR}
-   cp -vfr ${B}/../include  ${STAGING_KERNEL_DIR}
-}
-
