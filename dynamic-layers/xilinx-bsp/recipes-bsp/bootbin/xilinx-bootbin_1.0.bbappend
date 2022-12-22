@@ -45,4 +45,4 @@
 #>   
 
 #do_build[depends] += "${@bb.utils.contains('DEPENDS', 'bitstream', 'virtual/bitstream:do_deploy', '', d)}"
-do_fetch[depends] += "virtual/bitstream:do_deploy'"
+do_fetch[depends] += "virtual/bitstream:do_deploy"
