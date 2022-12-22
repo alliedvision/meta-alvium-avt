@@ -1,0 +1,22 @@
+From 664d3a72be720a4df759da3dcb6ebd760b2ea6d2 Mon Sep 17 00:00:00 2001
+From: Dennis Langenkamp <dennis.langenkamp@alliedvision.com>
+Date: Wed, 21 Dec 2022 15:14:09 +0100
+Subject: [PATCH] xilinx-dma: Disabled userptr streaming
+
+---
+ drivers/media/platform/xilinx/xilinx-dma.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/media/platform/xilinx/xilinx-dma.c b/drivers/media/platform/xilinx/xilinx-dma.c
+index 403d41ece44b..5ca77c4f138f 100644
+--- a/drivers/media/platform/xilinx/xilinx-dma.c
++++ b/drivers/media/platform/xilinx/xilinx-dma.c
+@@ -1421,7 +1421,7 @@ int xvip_dma_init(struct xvip_composite_device *xdev, struct xvip_dma *dma,
+ 	 * instead of 'cat' isn't really a drawback.
+ 	 */
+ 	dma->queue.type = type;
+-	dma->queue.io_modes = VB2_MMAP | VB2_USERPTR | VB2_DMABUF;
++	dma->queue.io_modes = VB2_MMAP | VB2_DMABUF;
+ 	dma->queue.lock = &dma->lock;
+ 	dma->queue.drv_priv = dma;
+ 	dma->queue.buf_struct_size = sizeof(struct xvip_dma_buffer);
