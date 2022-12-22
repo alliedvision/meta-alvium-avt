@@ -44,4 +44,5 @@
 #>   DEPENDS += "${@(d.getVar('BIF_PARTITION_ATTR') or "").replace('bitstream', 'virtual/bitstream')}"
 #>   
 
-do_build[depends] += "${@bb.utils.contains('DEPENDS', 'bitstream', 'virtual/bitstream:do_deploy', '', d)}"
+#do_build[depends] += "${@bb.utils.contains('DEPENDS', 'bitstream', 'virtual/bitstream:do_deploy', '', d)}"
+do_fetch[depends] += "virtual/bitstream:do_deploy'"
