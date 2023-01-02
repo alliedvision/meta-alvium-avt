@@ -1,0 +1,1 @@
+do_compile[depends] += " device-tree:do_deploy "
