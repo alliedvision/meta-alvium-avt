@@ -1,8 +1,3 @@
-
-#${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'weston-xwayland matchbox-terminal', '', d)}"
-
-require ${BSPDIR}/sources/poky/meta/recipes-graphics/images/core-image-weston.bb
-
 SUMMARY = "A very basic Wayland image with a terminal and some v4l2 tools to test the alvium v4l2 driver"
 DESCRIPTION = "A weston minimal v4l2 demo image for Testing."
 
@@ -11,15 +6,23 @@ IMAGE_FEATURES += "ssh-server-openssh "
 
 LICENSE = "MIT"
 
+inherit core-image
+
+QB_MEM = "-m 512"
+
+IMAGE_LINGUAS ?= " "
+
+inherit core-image features_check
+#distro_features_check
+# extrausers
+
 export IMAGE_BASENAME = "avs-image-alvium-validation"
 
 REQUIRED_DISTRO_FEATURES += "wayland"
 
 CORE_IMAGE_BASE_INSTALL += "packagegroup-core-weston"
 
-CORE_IMAGE_BASE_INSTALL += "weston weston-init "
-CORE_IMAGE_BASE_INSTALL += "weston-examples "
-#CORE_IMAGE_BASE_INSTALL += " gtk+3-demo "
+CORE_IMAGE_BASE_INSTALL += "weston weston-init weston-examples gtk+3-demo"
 CORE_IMAGE_BASE_INSTALL += "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'weston-xwayland matchbox-terminal', '', d)}"
 
 CORE_IMAGE_EXTRA_INSTALL += " \
@@ -43,8 +46,6 @@ CORE_IMAGE_EXTRA_INSTALL += " htop lsof "
 CORE_IMAGE_EXTRA_INSTALL += " avt-csi2-3 "
 CORE_IMAGE_EXTRA_INSTALL += " v4l2viewer "
 CORE_EXTRA_IMAGE_INSTALL += " python3-configargparse "
-
-#avsv4l2
 
 
 CORE_IMAGE_EXTRA_INSTALL += " ttf-ubuntu-mono ttf-ubuntu-sans "
@@ -74,6 +75,8 @@ CORE_IMAGE_EXTRA_INSTALL += " \
 				gstreamer1.0-libav  \
 				ffmpeg \
 				graphviz \
+				tzdata ntimed \
+				gst-instruments \
 				"
 
 #CORE_IMAGE_EXTRA_INSTALL += " opencv "
@@ -109,13 +112,12 @@ LICENSE_FLAGS_ACCEPTED += "\
 	commercial_vlc \
 	"
 
-#LICENSE_FLAGS_ACCEPTED_append = " non-commercial_netperf"
 LICENSE_FLAGS_ACCEPTED += "commercial_pmu-rom-native"
 LICENSE_FLAGS_ACCEPTED += "xilinx_pmu-rom-native"
 
 PACKAGECONFIG_pn-kmscube += " gstreamer "
 PACKAGECONFIG_pn-kmscube-master += " gstreamer "
 
-#PACKAGECONFIG_pn-weston:append = " xwayland screenshare shell-desktop image-jpeg "
+PACKAGECONFIG_pn-weston:append = " xwayland screenshare shell-desktop image-jpeg "
 PACKAGECONFIG_pn-v4l-utils:append = " qv4l2 "
-#PREFERRED_VERSION:v4l-utils ?= "1.22%"
+PREFERRED_VERSION:v4l-utils = "1.23%"
