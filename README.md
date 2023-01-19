@@ -11,13 +11,13 @@ Maintainers, Mailing list, Patches
 ==================================
 
 For any patches or pull requests please use the Github pull requests.
-For comments or questions about this layer, please create an issue.
+For comments or questions about this layer, please create an issue or contact support@alliedvision.com.
 
 
 Maintainers:
 
-	Dennis Langenkamp <dennis.langenkamp@alliedvision.com>
-	Florian Kesseler <florian.kesseler@alliedvision.com>
+	Dennis Langenkamp 
+	Florian Kesseler 
 
 Dependencies
 ============
@@ -102,6 +102,11 @@ To install the driver and layer:
 
 Tip: By default, the camera is listed as /video3 or /video4, depending on the port.
 
+## Limitations
+-  Pixel formats not supported by the camera are listed and selectable.
+-  When triggering with the v4l2 controls, the first frame is missing.
+-  Maximum width of an image: 4096 pixels when only port 1 is used. Maximum width with both ports: 2048 pixels.
+
 ## How to start a stream
 
 cat  /sys/bus/i2c/devices/1-003c/device_temperature
@@ -124,7 +129,7 @@ ZCU106 quick start guide
 
 ## Installation
 
-Tip: For the prebake image, skip steps 1-5 and start with step 6.
+Tip: For the prebake image, skip steps 1-7 and start with step 8.
 
 To install the driver and layer:
 
@@ -155,15 +160,13 @@ To install the driver and layer:
     ```
 4. Checkout the following AVT meta layers:
     - [meta-alvium-avt](https://github.com/alliedvision/meta-alvium-avt) (this repository)
-    - [meta-imx-avt](https://github.com/alliedvision/meta-imx-avt)
 5. Add the AVT layers with the commands:
     ```shell
-    bitbake-layers add-layer <path_to_meta-alvium-avt>  
-    bitbake-layers add-layer <path_to_meta-imx-avt>
+    bitbake-layers add-layer <path_to_meta-alvium-avt>
     ```
 6. Copy the example configuration from meta-alvium-avt with the following command:
     ```shell
-      cp <path_to_meta-alvium-avt>/build_imx8mp_evk_example/conf/local.conf <build_dir>/conf/local.conf
+      cp <path_to_meta-alvium-avt>/build_avt_fmc_4x4_example/conf/local.conf <build_dir>/conf/local.conf
     ```
 7. Build the AVT Image with the command:
      ```shell
@@ -173,6 +176,9 @@ To install the driver and layer:
    <build_dir>/tmp/deploy/images/zcu106-zynqmp/avs-image-alvium-validation-zcu106-zynqmp.wic.bz2
 9. Boot the board.
 10. Check if the camera firmware version is 11.1 or higher. If the camera has an earlier firmware, perform an update with Vimba Firmware Updater.
+
+## Limitations
+-  The prebuild image does only support streaming with YUV422.
 
 ## How to start a stream
 e.g. for Alvium 1500 C-500c on Port 0 of ZCU106:
