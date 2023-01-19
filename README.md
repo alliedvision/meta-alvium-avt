@@ -95,7 +95,7 @@ To install the driver and layer:
    ```shell
    bitbake avs-image-alvium-validation
    ```
-6. Flash the image to the SD card.  If you have build the image with yocto, you can find the image here:
+6. Flash the image to the SD card.  If you have built the image with yocto, you can find the image here:
    <build_dir>/tmp/deploy/images/imx8mpevk/avs-image-alvium-validation-imx8mpevk.rootfs.wic.bz2
 7. Boot the board.
 8. Check if the camera firmware version is 11.1 or higher. If the camera has an earlier firmware, perform an update with Vimba Firmware Updater.
@@ -172,7 +172,7 @@ To install the driver and layer:
      ```shell
       bitbake avs-image-alvium-validation
     ```
-8. Flash the image to the SD card. If you have build the image with yocto, you can find the image here:
+8. Flash the image to the SD card. If you have built the image with yocto, you can find the image here:
    <build_dir>/tmp/deploy/images/zcu106-zynqmp/avs-image-alvium-validation-zcu106-zynqmp.wic.bz2
 9. Boot the board.
 10. Check if the camera firmware version is 11.1 or higher. If the camera has an earlier firmware, perform an update with Vimba Firmware Updater.
