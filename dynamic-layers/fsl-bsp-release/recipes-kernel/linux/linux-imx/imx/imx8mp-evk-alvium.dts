@@ -284,6 +284,22 @@
 	*/
 };
 
+/ {
+  avt_csitl {
+    supported_data_types = [ 2a ];
+    min_announced_frames = <3>;
+
+    ipu {
+      y_min = <16>;
+      y_inc = <1>;
+      y_max = <8192>;
+      x_min = <16>;
+      x_inc = <12>;
+      x_max = <4096>;
+    };
+  };
+};
+
 /*
 A table for MIPI clock frequency and register setting of HSSETTLE[7:0] and CLKSETTLECTL[1:0] had been missed in iMX7D reference manual.
 
