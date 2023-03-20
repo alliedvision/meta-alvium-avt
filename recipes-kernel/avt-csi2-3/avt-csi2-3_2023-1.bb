@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=12f884d2ae1ff87c09e5b7ccc2c4ca7e"
 inherit module
 
 AVT_GIT_REPO = "alvium-csi2-driver"
-AVT_GIT_BRANCH = "main"
+AVT_GIT_BRANCH = "dev"
 SRCREV = "${AUTOREV}"
 
 require recipes-avt/common/avt_git.inc
