@@ -22,9 +22,18 @@ BBPATH = "\${TOPDIR}"
 BBFILES ?= ""
 
 BBLAYERS ?= " \
-  \${BSPDIR}/sources/poky/meta \
-  \${BSPDIR}/sources/poky/meta-poky \
-  \${BSPDIR}/sources/poky/meta-yocto-bsp \
+  \${BSPDIR}/sources/poky/meta \\
+  \${BSPDIR}/sources/poky/meta-poky \\
+  \${BSPDIR}/sources/poky/meta-yocto-bsp \\
+  \${BSPDIR}/sources/meta-openembedded/meta-oe \\
+  \${BSPDIR}/sources/meta-openembedded/meta-python \\
+  \${BSPDIR}/sources/meta-openembedded/meta-networking \\
+  \${BSPDIR}/sources/meta-openembedded/meta-multimedia \\
+  \${BSPDIR}/sources/meta-xilinx/meta-xilinx-bsp \\
+  \${BSPDIR}/sources/meta-xilinx/meta-xilinx-core \\
+  \${BSPDIR}/sources/meta-xilinx/meta-xilinx-standalone \\
+  \${BSPDIR}/sources/meta-xilinx/meta-xilinx-pynq \\
+  \${BSPDIR}/sources/meta-xilinx-tools \\
   "
 EOL
 
@@ -60,29 +69,3 @@ EOL
 fi
 
 source sources/poky/oe-init-build-env ${BUILD_DIR}
-
-
-function add_layer() {
-    if [ -d "${BSP_DIR}/sources/$1" ]; then
-        if [ -z $(grep "$1" ${BBLAYERS_FILE}) ]; then
-            echo "BBLAYERS += \"\${BSPDIR}/sources/$1\"" >> ${BBLAYERS_FILE}
-        fi
-    else
-        echo "Warning: $1 not found! Some feature may not be available!"
-    fi
-}
-
-if [ ${FULL_SETUP} -eq 1 ]; then
-
-    BUILD_DIR=.
-
-    add_layer "meta-openembedded/meta-oe"
-    add_layer "meta-openembedded/meta-python"
-    add_layer "meta-openembedded/meta-networking"
-    add_layer "meta-openembedded/meta-multimedia"
-    add_layer "meta-xilinx/meta-xilinx-bsp"
-    add_layer "meta-xilinx/meta-xilinx-core"
-    add_layer "meta-xilinx/meta-xilinx-standalone"
-    add_layer "meta-xilinx/meta-xilinx-pynq"
-    add_layer "meta-xilinx-tools"
-fi
