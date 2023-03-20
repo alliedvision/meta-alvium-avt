@@ -29,6 +29,7 @@ BBLAYERS ?= " \
   \${BSPDIR}/sources/meta-openembedded/meta-python \\
   \${BSPDIR}/sources/meta-openembedded/meta-networking \\
   \${BSPDIR}/sources/meta-openembedded/meta-multimedia \\
+  \${BSPDIR}/sources/meta-qt5 \\
   \${BSPDIR}/sources/meta-xilinx/meta-xilinx-bsp \\
   \${BSPDIR}/sources/meta-xilinx/meta-xilinx-core \\
   \${BSPDIR}/sources/meta-xilinx/meta-xilinx-standalone \\
