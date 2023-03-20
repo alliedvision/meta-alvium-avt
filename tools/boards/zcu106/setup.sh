@@ -16,7 +16,7 @@ if [ ${FULL_SETUP} -eq 1 ]; then
 # changes incompatibly
 POKY_BBLAYERS_CONF_VERSION = "1"
 
-BSPDIR := "\${@os.path.abspath(os.path.dirname(d.getVar('FILE', True)) + '/$(realpath --relative-to=${BUILD_DIR} ${BSP_DIR})')}"
+BSPDIR := "\${@os.path.abspath(os.path.dirname(d.getVar('FILE', True)) + '/$(realpath --relative-to=${BUILD_DIR}/conf ${BSP_DIR})')}"
 
 BBPATH = "\${TOPDIR}"
 BBFILES ?= ""
