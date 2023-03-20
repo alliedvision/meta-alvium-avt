@@ -14,7 +14,7 @@ if [ ${FULL_SETUP} -eq 1 ]; then
     cat >> ${BUILD_DIR}/conf/bblayers.conf <<EOL
 # POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayers.conf
 # changes incompatibly
-POKY_BBLAYERS_CONF_VERSION = "1"
+POKY_BBLAYERS_CONF_VERSION = "2"
 
 BSPDIR := "\${@os.path.abspath(os.path.dirname(d.getVar('FILE', True)) + '/$(realpath --relative-to=${BUILD_DIR}/conf ${BSP_DIR})')}"
 
@@ -38,7 +38,7 @@ BBLAYERS ?= " \
 EOL
 
     cat >> ${BUILD_DIR}/conf/local.conf <<EOL
-CONF_VERSION = "1"
+CONF_VERSION = "2"
 EXTRA_IMAGE_FEATURES = "debug-tweaks"
 USER_CLASSES ?= "buildstats"
 
