@@ -11,8 +11,25 @@ if [ ${FULL_SETUP} -eq 1 ]; then
     mkdir -p  ${BUILD_DIR}/conf
     touch ${BUILD_DIR}/conf/local.conf
 
+    cat >> ${BUILD_DIR}/conf/bblayers.conf <<EOL
+# POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayers.conf
+# changes incompatibly
+POKY_BBLAYERS_CONF_VERSION = "1"
+
+BSPDIR=$(realpath --relative-to=${BUILD_DIR} ${BSP_DIR})
+
+BBPATH = "\${TOPDIR}"
+BBFILES ?= ""
+
+BBLAYERS ?= " \
+  \${BSPDIR}/sources/poky/meta \
+  \${BSPDIR}/sources/poky/meta-poky \
+  \${BSPDIR}/sources/poky/meta-yocto-bsp \
+  "
+EOL
+
     cat >> ${BUILD_DIR}/conf/local.conf <<EOL
-CONF_VERSION = "2"
+CONF_VERSION = "1"
 EXTRA_IMAGE_FEATURES = "debug-tweaks"
 USER_CLASSES ?= "buildstats"
 
