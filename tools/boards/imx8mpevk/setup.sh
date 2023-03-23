@@ -26,7 +26,7 @@ if [ ${FULL_SETUP} -eq 1 ]; then
         cp conf/bblayers.conf conf/bblayers.conf.imx
     fi
 
-    sed -i 's/BSPDIR := .*/BSPDIR := '$(realpath --relative-to=${BUILD_DIR}/conf ${BSP_DIR})'/g' conf/bblayers.conf
+    sed -i 's,BSPDIR := .*,BSPDIR := \"'"${BSP_DIR}"'\",g' conf/bblayers.conf
 
     sed -i 's/${BSPDIR}\/sources/${BSPDIR}\/imx-bsp\/sources/g' conf/bblayers.conf
 
