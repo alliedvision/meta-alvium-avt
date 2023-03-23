@@ -8,6 +8,14 @@ if [ ${sourced} -eq 0  ];then
 fi
 
 
+while getopts "b:" opt; do
+  case "$opt" in
+    b)
+      BUILD_DIR="$(realpath ${OPTARG})"
+      ;;
+  esac
+done
+
 BSP_DIR=${PWD}
 SCRIPT_DIR=$(dirname $(realpath ${BASH_SOURCE}))
 
@@ -33,7 +41,9 @@ if [ ! -f "${BOARD_SETUP_PATH}" ]; then
     echo "BOARD env variable is not set falling back to default: ${BOARD}!"
 fi
 
-BUILD_DIR=$(realpath "${BSP_DIR}/build_${BOARD}")
+if [ -z BUILD_DIR ]; then
+    BUILD_DIR=$(realpath "${BSP_DIR}/build_${BOARD}")
+fi
 
 if [ -d "${BUILD_DIR}" ];then
     FULL_SETUP=0
