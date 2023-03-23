@@ -14,6 +14,11 @@ DISTRO="fsl-imx-xwayland"
 IMX_BUILD_DIR=$(realpath --relative-to=${PWD} ${BUILD_DIR})
 
 if [ ${FULL_SETUP} -eq 1 ]; then
+    if [ ${ACCEPT_LICENSES} -eq 1 ]; then
+        mkdir -p ${BUILD_DIR}/conf
+        echo "ACCEPT_FSL_EULA = \"1\"" >> ${LOCAL_CONF_FILE}
+    fi
+
     source imx-setup-release.sh -b ${IMX_BUILD_DIR}
 
     BUILD_DIR=.
