@@ -45,7 +45,10 @@ if [ -z BUILD_DIR ]; then
     BUILD_DIR=$(realpath "${BSP_DIR}/build_${BOARD}")
 fi
 
-if [ -d "${BUILD_DIR}" ];then
+LOCAL_CONF_FILE="${BUILD_DIR}/conf/local.conf"
+BBLAYERS_FILE="${BUILD_DIR}/conf/bblayers.conf"
+
+if [ -f "${LOCAL_CONF_FILE}" ];then
     FULL_SETUP=0
 else
     FULL_SETUP=1
@@ -54,9 +57,6 @@ fi
 source ${BOARD_SETUP_PATH}
 
 if [ ! -f  "${LOCAL_CONF_FILE}.bak.avt" ]; then
-    LOCAL_CONF_FILE="${BUILD_DIR}/conf/local.conf"
-    BBLAYERS_FILE="${BUILD_DIR}/conf/bblayers.conf"
-
     if [ -z $(grep "meta-alvium-avt" ${BBLAYERS_FILE}) ]; then
         echo "BBLAYERS += \"\${BSPDIR}/sources/meta-alvium-avt\"" >> ${BBLAYERS_FILE}
     fi
