@@ -15,7 +15,7 @@ require recipes-avt/common/avt_git.inc
 
 S = "${WORKDIR}/git"
 
-PV = "2.0.0-beta+git${SRCPV}"
+PV = "2.1.0+git${SRCPV}"
 
 do_install() {
 	install -d ${D}${bindir}
