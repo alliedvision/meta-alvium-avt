@@ -9,13 +9,13 @@ DEPENDS:append = " qtbase "
 
 AVT_GIT_REPO = "V4L2Viewer"
 AVT_GIT_BRANCH = "dev"
-SRCREV = "3182b804e6e30c6e4c734a0d65789c43ccf73304"
+SRCREV = "3b9dd26a1f5f2277021a222b36d59ac277cf8529"
 
 require recipes-avt/common/avt_git.inc
 
 S = "${WORKDIR}/git"
 
-PV = "2.0.0-beta+git${SRCPV}"
+PV = "2.2.0+git${SRCPV}"
 
 do_install() {
 	install -d ${D}${bindir}
