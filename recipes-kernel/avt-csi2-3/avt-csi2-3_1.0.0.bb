@@ -5,14 +5,14 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=12f884d2ae1ff87c09e5b7ccc2c4ca7e"
 inherit module
 
 AVT_GIT_REPO = "alvium-csi2-driver"
-AVT_GIT_BRANCH = "dev"
-SRCREV = "${AUTOREV}"
+AVT_GIT_BRANCH = "main"
+SRCREV = "46726167369be8171fb2e55c49464d921990fde7"
 
 require recipes-avt/common/avt_git.inc
 
 S = "${WORKDIR}/git"
 
-PV = "2023-1-beta+git${SRCPV}"
+PV = "1.0.0+git${SRCPV}"
 
 # The inherit of module.bbclass will automatically name module packages with
 # "kernel-module-" prefix as required by the oe-core build environment.
