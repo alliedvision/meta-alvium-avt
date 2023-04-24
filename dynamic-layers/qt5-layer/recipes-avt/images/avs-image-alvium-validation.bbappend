@@ -1,0 +1,1 @@
+TOOLCHAIN_HOST_TASK:append = " nativesdk-packagegroup-qt5-toolchain-host "
