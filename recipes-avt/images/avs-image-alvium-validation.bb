@@ -59,6 +59,7 @@ CORE_IMAGE_EXTRA_INSTALL += " ttf-dejavu-serif-condensed"
 CORE_IMAGE_EXTRA_INSTALL += " ttf-dejavu-mathtexgyre"
 CORE_IMAGE_EXTRA_INSTALL += " ttf-dejavu-common"
 CORE_IMAGE_EXTRA_INSTALL += " python3-spidev gstreamer1.0-python "
+CORE_IMAGE_EXTRA_INSTALL += " python3-pip "
 
 CORE_EXTRA_IMAGE_INSTALL += " gst-instruments "
 CORE_IMAGE_EXTRA_INSTALL += " \
@@ -121,3 +122,5 @@ PACKAGECONFIG_pn-kmscube-master += " gstreamer "
 PACKAGECONFIG_pn-weston:append = " xwayland screenshare shell-desktop image-jpeg "
 PACKAGECONFIG_pn-v4l-utils:append = " qv4l2 "
 PREFERRED_VERSION:v4l-utils = "1.23%"
+
+TOOLCHAIN_TARGET_TASK += "kernel-devsrc"
