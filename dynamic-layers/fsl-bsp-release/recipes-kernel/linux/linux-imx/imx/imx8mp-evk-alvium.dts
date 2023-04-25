@@ -46,6 +46,8 @@
 		streamon_delay = <80>; 
 		x_force_reset_on_init;
 
+        avt,max-width = <4096>;
+
 		avt-ignore-yuv420_8_leg_avail;
 		avt-ignore-yuv420_8_avail;
 		avt-ignore-yuv420_10_avail;
@@ -115,6 +117,8 @@
 		streamon_delay = <80>; 
 		x_force_reset_on_init;
 
+		avt,max-width = <2048>;
+
 		avt-ignore-yuv420_8_leg_avail;
 		avt-ignore-yuv420_8_avail;
 		avt-ignore-yuv420_10_avail;
@@ -141,6 +145,12 @@
 				link-frequencies = /bits/ 64 <AVT_LINK_FREQUENCY>;
 				/*max-pixel-frequency = /bits/ 64 <266000000>;*/
 				remote-endpoint = <&mipi_csi1_ep>;
+			};
+		};
+
+		avt_csitl {
+			ipu {
+				x_max = <6144>;
 			};
 		};
 	};
