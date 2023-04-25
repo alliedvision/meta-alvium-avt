@@ -300,7 +300,7 @@
     min_announced_frames = <3>;
 
     ipu {
-      y_min = <16>;
+      y_min = <1>;
       y_inc = <1>;
       y_max = <8192>;
       x_min = <16>;
