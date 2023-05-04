@@ -24,6 +24,8 @@
 	/delete-node/ov5640_mipi@3c;
 
 	avt_camera_0: avt_camera_0@3c {
+        status = "disabled";
+            
 		compatible = "alliedvision,avt3"; /*"alliedvision,avt_csi2";*/
 		reg = <0x3c>;
 		pinctrl-names = "default";
@@ -67,7 +69,7 @@
 		x_avt-ignore-raw12_avail;
 		avt-ignore-raw14_avail;
 
-		status = "okay";
+		
 
 		port {
 			avt_mipi_ep_0: endpoint {
@@ -97,8 +99,8 @@
 
 	/delete-node/ov5640_mipi@3c;
 
-	avt_camera_1@3c {
-		status = "okay";
+	avt_camera_1: avt_camera_1@3c {
+		status = "disabled";
 		compatible = "alliedvision,avt3"; /*"alliedvision,avt_csi2";*/
 		reg = <0x3c>;
 		/*powerdown-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
@@ -117,7 +119,7 @@
 		streamon_delay = <80>; 
 		x_force_reset_on_init;
 
-		avt,max-width = <2048>;
+		avt,max-width = <4096>;
 
 		avt-ignore-yuv420_8_leg_avail;
 		avt-ignore-yuv420_8_avail;
@@ -147,12 +149,6 @@
 				remote-endpoint = <&mipi_csi1_ep>;
 			};
 		};
-
-		avt_csitl {
-			ipu {
-				x_max = <6144>;
-			};
-		};
 	};
 
 	cam_ina_1: power_sensor1@44 {
@@ -169,14 +165,14 @@
 
 &isi_0 {
 	/*assigned-clock-rates = <750000000>, <500000000>;*/
-	status = "okay";
+	status = "disabled";
 	disable_resolution_check;
     dma-coherent;
 };
 
 &isi_1 {
 	/*assigned-clock-rates = <750000000>, <500000000>;*/
-	status = "okay";
+	status = "disabled";
 	disable_resolution_check;
     dma-coherent;
 };
@@ -197,7 +193,7 @@
 };
 
 &mipi_csi_0 {
-	status = "okay";
+  	status = "disabled";
 	clock-frequency = <AVT_LINK_FREQUENCY>;
 	/*assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_266M>;*/
 	assigned-clock-rates = <CSI_ASSIGNED_CLOCK_RATES>;
@@ -218,7 +214,7 @@
 };
 
 &mipi_csi_1 {
-	status = "okay";
+	status = "disabled";
 	clock-frequency = <AVT_LINK_FREQUENCY>;
 	assigned-clock-rates = <CSI_ASSIGNED_CLOCK_RATES>;
 
@@ -295,7 +291,7 @@
 };
 
 / {
-  avt_csitl {
+  avt_csitl: avt_csitl {
     supported_data_types = [ 2a ];
     min_announced_frames = <3>;
 
