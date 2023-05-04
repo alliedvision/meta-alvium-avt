@@ -32,17 +32,16 @@ case "$1" in
 
   -l|--list-available)
     current=$(printenv "${U_BOOT_DEVICE_TREE_VAR}" | sed  's/.*=\(.*\)/\1/g')
-   for i in ${!AVAILABLE_DTBS[@]}; do
+    for i in ${!AVAILABLE_DTBS[@]}; do
       (
-     
-      parse_config_entry $i
-      
-      text="$i: ${name} (${dtb})"
-      if [ "${current}" == "${dtb}" ]; then
-        echo -e "\e[1m${text}*\e[0m"
-      else
-        echo -e "${text}"
-      fi
+        parse_config_entry $i
+
+        text="$i: ${name} (${dtb})"
+        if [ "${current}" == "${dtb}" ]; then
+          echo -e "\e[1m${text}*\e[0m"
+        else
+          echo -e "${text}"
+        fi
       )
     done
     ;;
