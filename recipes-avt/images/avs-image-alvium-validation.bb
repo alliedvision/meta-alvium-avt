@@ -80,7 +80,7 @@ CORE_IMAGE_EXTRA_INSTALL += " \
 				gst-instruments \
 				"
 
-#CORE_IMAGE_EXTRA_INSTALL += " opencv "
+CORE_IMAGE_EXTRA_INSTALL += " opencv "
 #CORE_IMAGE_EXTRA_INSTALL += " yuview yuview-tools yuview-plugins qsiv  "
 
 MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "kernel-modules"

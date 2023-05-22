@@ -1,0 +1,62 @@
+#!/bin/bash
+
+U_BOOT_INITIAL_ENV=/etc/u-boot-imx-initial-env
+U_BOOT_DEVICE_TREE_VAR=fdtfile
+
+AVAILABLE_DTBS=("imx8mp-evk-alvium-2cam.dtb:2 Alvium CSI2 Cameras"
+                "imx8mp-evk-alvium-1cam-csi0-isi0.dtb:1 Alvium CSI2 Camera -> CSI0 -> ISI0"
+                "imx8mp-evk-alvium-1cam-csi1-isi0.dtb:1 Alvium CSI2 Camera -> CSI1 -> ISI0") 
+
+
+function printenv () {
+    fw_printenv -f ${U_BOOT_INITIAL_ENV} $1
+}
+
+function setenv () {
+    fw_setenv -f ${U_BOOT_INITIAL_ENV} $1 $2
+}
+
+function parse_config_entry () {
+    IFS=':' read -ra entry <<< "${AVAILABLE_DTBS[$1]}"
+    dtb="${entry[0]}"
+    name="${entry[1]}"
+}
+
+case "$1" in
+  -h|--help)
+    echo "$0 --list-available" >&2
+    echo "$0 --set <index>" >&2
+ 
+    exit 1
+    ;;
+
+  -l|--list-available)
+    current=$(printenv "${U_BOOT_DEVICE_TREE_VAR}" | sed  's/.*=\(.*\)/\1/g')
+    for i in ${!AVAILABLE_DTBS[@]}; do
+      (
+        parse_config_entry $i
+
+        text="$i: ${name} (${dtb})"
+        if [ "${current}" == "${dtb}" ]; then
+          echo -e "\e[1m${text}*\e[0m"
+        else
+          echo -e "${text}"
+        fi
+      )
+    done
+    ;;
+
+  -s|--set)
+    if [ "$2" -gt "${#AVAILABLE_DTBS[@]}" ]; then
+        echo "Invalid index"
+        exit 1
+    fi
+    
+    parse_config_entry $2
+    
+    setenv "${U_BOOT_DEVICE_TREE_VAR}" "${dtb}"
+    ;;
+  *)
+    "$0" --help
+    ;;
+esac

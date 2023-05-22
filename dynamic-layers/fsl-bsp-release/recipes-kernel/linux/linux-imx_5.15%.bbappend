@@ -7,7 +7,10 @@ require recipes-kernel/linux/linux-avt-common.inc
 
 SRC_URI:append:imx8mpevk = " \
 	file://mipi_timing.h;subdir=git/arch/arm64/boot/dts/freescale \
-	file://imx8mp-evk-alvium.dts;subdir=git/arch/arm64/boot/dts/freescale \
+	file://imx8mp-evk-alvium-base.dtsi;subdir=git/arch/arm64/boot/dts/freescale \
+	file://imx8mp-evk-alvium-2cam.dts;subdir=git/arch/arm64/boot/dts/freescale \
+	file://imx8mp-evk-alvium-1cam-csi0-isi0.dts;subdir=git/arch/arm64/boot/dts/freescale \
+	file://imx8mp-evk-alvium-1cam-csi1-isi0.dts;subdir=git/arch/arm64/boot/dts/freescale \
 	file://imx8mp-evk-alvium-fpdlink.dts;subdir=git/arch/arm64/boot/dts/freescale \
 	file://0001_imx8mpevk_avt_sensor_dts_Makefile.patch \
 	file://0001_dbg_imx8-isi-hw.patch \
