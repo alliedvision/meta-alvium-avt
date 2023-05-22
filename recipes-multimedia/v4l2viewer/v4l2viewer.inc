@@ -9,7 +9,7 @@ DEPENDS:append = " qtbase "
 
 AVT_GIT_REPO = "V4L2Viewer"
 AVT_GIT_BRANCH = "dev"
-SRCREV = "990b75deaa192e2240b4e6bac3f540ccf078bad5"
+SRCREV = "72aa955df692f2d4b280081ea94cec902867b3ab"
 
 require recipes-avt/common/avt_git.inc
 
