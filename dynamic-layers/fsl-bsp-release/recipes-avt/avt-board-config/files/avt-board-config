@@ -4,8 +4,8 @@ U_BOOT_INITIAL_ENV=/etc/u-boot-imx-initial-env
 U_BOOT_DEVICE_TREE_VAR=fdtfile
 
 AVAILABLE_DTBS=("imx8mp-evk-alvium-2cam.dtb:2 Alvium CSI2 Cameras"
-                "imx8mp-evk-alvium-1cam-csi0-isi0.dtb:1 Alvium CSI2 Camera -> CSI0 -> ISI0"
-                "imx8mp-evk-alvium-1cam-csi1-isi0.dtb:1 Alvium CSI2 Camera -> CSI1 -> ISI0") 
+                "imx8mp-evk-alvium-1cam-csi0-isi0.dtb:1 Alvium CSI2 Camera -> CSI1 -> ISI0"
+                "imx8mp-evk-alvium-1cam-csi1-isi0.dtb:1 Alvium CSI2 Camera -> CSI2 -> ISI0")
 
 
 function printenv () {
