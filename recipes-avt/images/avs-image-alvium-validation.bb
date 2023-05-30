@@ -65,9 +65,6 @@ CORE_EXTRA_IMAGE_INSTALL += " gst-instruments "
 CORE_IMAGE_EXTRA_INSTALL += " \
 				kernel-modules \
 				ndisc6 \
-				libdrm \
-				libdrm-kms \
-				libdrm-tests \
 				gstreamer1.0 \
 				gstreamer1.0-plugins-base \
 				gstreamer1.0-plugins-good \
