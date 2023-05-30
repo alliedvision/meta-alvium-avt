@@ -1,4 +1,4 @@
-From b6f71be215aacf09f5d404e865b209fd8e0ffb64 Mon Sep 17 00:00:00 2001
+From bb1c16ae2e391a32736232aa26fc69f0c9a1a05b Mon Sep 17 00:00:00 2001
 From: Dennis Langenkamp <dennis.langenkamp@alliedvision.com>
 Date: Wed, 21 Dec 2022 15:14:09 +0100
 Subject: [PATCH 1/2] xilinx-dma: Disabled userptr streaming
@@ -8,10 +8,10 @@ Subject: [PATCH 1/2] xilinx-dma: Disabled userptr streaming
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/media/platform/xilinx/xilinx-dma.c b/drivers/media/platform/xilinx/xilinx-dma.c
-index 403d41ece44b..5ca77c4f138f 100644
+index 169f05efb856..528df7beddad 100644
 --- a/drivers/media/platform/xilinx/xilinx-dma.c
 +++ b/drivers/media/platform/xilinx/xilinx-dma.c
-@@ -1421,7 +1421,7 @@ int xvip_dma_init(struct xvip_composite_device *xdev, struct xvip_dma *dma,
+@@ -1420,7 +1420,7 @@ int xvip_dma_init(struct xvip_composite_device *xdev, struct xvip_dma *dma,
  	 * instead of 'cat' isn't really a drawback.
  	 */
  	dma->queue.type = type;
