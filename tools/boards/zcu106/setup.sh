@@ -33,7 +33,6 @@ BBLAYERS ?= " \
   \${BSPDIR}/sources/meta-xilinx/meta-xilinx-bsp \\
   \${BSPDIR}/sources/meta-xilinx/meta-xilinx-core \\
   \${BSPDIR}/sources/meta-xilinx/meta-xilinx-standalone \\
-  \${BSPDIR}/sources/meta-xilinx/meta-xilinx-pynq \\
   \${BSPDIR}/sources/meta-xilinx-tools \\
   "
 EOL
