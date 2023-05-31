@@ -65,6 +65,14 @@ MACHINE = "zcu106-zynqmp"
 DISTRO = "poky"
 PACKAGE_CLASSES = "package_deb"
 EOL
+   if [ -d "${BSP_DIR}/sources/meta-alivum-bitstream" ]; then
+
+        if [ -z $(grep "meta-alivum-bitstream" ${BBLAYERS_FILE}) ]; then
+            echo "BBLAYERS += \"\${BSPDIR}/sources/meta-alivum-bitstream\"" >> ${BBLAYERS_FILE}
+        fi
+    else
+        echo "Warning: meta-alivum-bitstream not found! Image will not contain any bitstream!"
+    fi
 
 fi
 
