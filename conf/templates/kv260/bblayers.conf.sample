@@ -16,4 +16,5 @@ BBLAYERS ?= " \
   ##OEROOT##/../meta-xilinx-tools \
   ##OEROOT##/../meta-kria \
   ##OEROOT##/../meta-alvium-avt \
+  ##OEROOT##/../meta-alvium-bitstream \
 "
