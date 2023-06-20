@@ -1,0 +1,100 @@
+CONF_VERSION = "2"
+EXTRA_IMAGE_FEATURES = "debug-tweaks"
+USER_CLASSES ?= "buildstats"
+
+PATCHRESOLVE = "noop"
+
+BB_DISKMON_DIRS ??= "\
+    STOPTASKS,${TMPDIR},1G,100K \
+    STOPTASKS,${DL_DIR},1G,100K \
+    STOPTASKS,${SSTATE_DIR},1G,100K \
+    STOPTASKS,/tmp,100M,100K \
+    HALT,${TMPDIR},100M,1K \
+    HALT,${DL_DIR},100M,1K \
+    HALT,${SSTATE_DIR},100M,1K \
+    HALT,/tmp,10M,1K"
+
+BB_DANGLINGAPPENDS_WARNONLY = "true"
+
+MACHINE_FEATURES:append = " screen "
+
+
+BB_SERVER_TIMEOUT = "300"
+
+BB_DANGLINGAPPENDS_WARNONLY = "true"
+
+USER_CLASSES ?= "buildstats"
+
+
+MACHINE = "k26-smk-kv"
+
+DISTRO = "poky"
+PACKAGE_CLASSES = "package_deb"
+
+PACKAGECONFIG:append:pn-qemu-system-native = " sdl"
+
+BB_NUMBER_THREADS = "6"
+PARALLEL_MAKE = "-j6"
+
+DISTRO_FEATURES:append = " wayland "
+
+MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "kernel-modules"
+
+DISTRO_FEATURES:append = " wayland "
+
+EXTRA_IMAGE_FEATURES += " \
+			debug-tweaks \
+			ssh-server-openssh \
+			eclipse-debug \
+			package-management \
+			"
+
+PACKAGECONFIG_pn:kmscube += " gstreamer "
+
+PACKAGECONFIG_pn:weston:append = " xwayland screenshare shell-desktop image-jpeg remoting screenshare shell-desktop"
+
+
+LICENSE_FLAGS_ACCEPTED += "xilinx_pmu-rom-native xilinx"
+
+LICENSE_FLAGS_ACCEPTED += "\
+	commercial_gst-fluendo-mp3 \
+	commercial_gst-openmax \
+	commercial_gst-plugins-ugly \
+	commercial_lame \
+	commercial_ffmpeg \
+	commercial_libmad \
+	commercial_libomxil \
+	commercial_mpeg2dec \
+	commercial_qmmp \
+	commercial_x264 \
+	commercial_libav \
+	commercial_gstreamer1.0 \
+	commercial_gstreamer1.0-libav \
+	commercial_gstreamer1.0-meta-base \
+	commercial_gstreamer1.0-omx \
+	commercial_gstreamer1.0-plugins-bad \
+	commercial_gstreamer1.0-plugins-base \
+	commercial_gstreamer1.0-plugins-good \
+	commercial_gstreamer1.0-plugins-ugly \
+	commercial_gstreamer1.0-python \
+	commercial_gstreamer1.0-rtsp-server \
+	commercial_gstreamer1.0-vaapi \
+	commercial_faad2 \
+	commercial_faac \
+	commercial_vlc \
+	"
+
+DISTRO_FEATURES:remove = "libmali"
+
+INITRAMFS_IMAGE:k26-smk-kv = ""
+RAMDISK_IMAGE1:k26-smk-kv = ""
+
+IMAGE_BOOT_FILES:remove = "${INITRAMFS_IMAGE}-${MACHINE}.cpio.gz.u-boot"
+
+IMAGE_FSTYPES = "wic.bmap wic.bz2 tar.bz2"
+
+INHERIT+="toaster buildhistory"
+
+
+include avt_git_override.conf
+
