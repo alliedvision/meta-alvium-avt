@@ -95,6 +95,7 @@ IMAGE_FSTYPES = "wic.bmap wic.bz2 tar.bz2"
 
 INHERIT+="toaster buildhistory"
 
+EXTRA_OECMAKE:pn-v4l2viewer += " -DSOFTWARE_RENDER_DEFAULT=ON"
 
 include avt_git_override.conf
 

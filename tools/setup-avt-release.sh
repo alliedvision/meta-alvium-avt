@@ -52,7 +52,7 @@ fi
 source ${BOARD_SETUP_PATH}
 
 if [ ! -f  "${LOCAL_CONF_FILE}.bak.avt" ]; then
-    if ! grep "meta-alvium-avt" ${BBLAYERS_FILE}; then
+    if ! grep -q "meta-alvium-avt" ${BBLAYERS_FILE}; then
         echo "BBLAYERS += \"\${BSPDIR}/sources/meta-alvium-avt\"" >> ${BBLAYERS_FILE}
     fi
 
