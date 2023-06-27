@@ -6,7 +6,7 @@ inherit module
 
 AVT_GIT_REPO = "alvium-csi2-driver"
 AVT_GIT_BRANCH = "main"
-SRCREV = "4b37457669e61dc6f1074df765feb520c5b5d6b5"
+SRCREV = "abd20195b400ddcf1f6b89075e3f64c0e00bed88"
 
 require recipes-avt/common/avt_git.inc
 
