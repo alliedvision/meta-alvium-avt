@@ -1,7 +1,7 @@
 From 25f9c619d42e4f734588eca9aa5ed6b175613517 Mon Sep 17 00:00:00 2001
 From: Dennis Langenkamp <dennis.langenkamp@alliedvision.com>
 Date: Mon, 17 Apr 2023 13:34:12 +0200
-Subject: [PATCH 2/2] v4l2: xilinx: Add Allied Vision GenICam for CSI2 format
+Subject: [PATCH 2/6] v4l2: xilinx: Add Allied Vision GenICam for CSI2 format
  definitions
 
 The xilinx video driver now support the special GenICam for CSI2 format. With the adjustments it is possible to use GenICam for CSI2 streaming on the zynqmp.
