@@ -1,0 +1,48 @@
+From d7b01f15d4972a922dc499fac8c64e8aeade6ddb Mon Sep 17 00:00:00 2001
+From: Dennis Langenkamp <dennis.langenkamp@alliedvision.com>
+Date: Wed, 6 Sep 2023 10:40:43 +0200
+Subject: [PATCH 6/6] Fixed PR review findings
+
+---
+ drivers/dma/xilinx/xilinx_frmbuf.c         | 2 +-
+ drivers/media/platform/xilinx/xilinx-dma.c | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/dma/xilinx/xilinx_frmbuf.c b/drivers/dma/xilinx/xilinx_frmbuf.c
+index 2eb3ce39ec76..4ba62991f0c8 100644
+--- a/drivers/dma/xilinx/xilinx_frmbuf.c
++++ b/drivers/dma/xilinx/xilinx_frmbuf.c
+@@ -1768,7 +1768,7 @@ static int xilinx_frmbuf_probe(struct platform_device *pdev)
+ 		return PTR_ERR(xdev->regs);
+ 
+ 	if (xdev->cfg->flags & XILINX_THREE_PLANES_PROP)
+-		max_height = 16384;//8640;
++		max_height = 16384;
+ 	else
+ 		max_height = 4320;
+ 
+diff --git a/drivers/media/platform/xilinx/xilinx-dma.c b/drivers/media/platform/xilinx/xilinx-dma.c
+index 8e780d886f90..ed3a6ac45919 100644
+--- a/drivers/media/platform/xilinx/xilinx-dma.c
++++ b/drivers/media/platform/xilinx/xilinx-dma.c
+@@ -36,7 +36,7 @@
+ #define XVIP_DMA_MIN_WIDTH		1U
+ #define XVIP_DMA_MAX_WIDTH		65535U
+ #define XVIP_DMA_MIN_HEIGHT		1U
+-#define XVIP_DMA_MAX_HEIGHT		16384U//8191U
++#define XVIP_DMA_MAX_HEIGHT		16384U
+ 
+ /* -----------------------------------------------------------------------------
+  * Helper functions
+@@ -562,7 +562,7 @@ static int xvip_dma_start_streaming(struct vb2_queue *vq, unsigned int count)
+ 	 */
+ 	if (!dma->low_latency_cap) {
+ 		dma_async_issue_pending(dma->dma);
+-		//XXX: Run a second issue pending to have one active buffer
++		// Run a second issue pending to have one active buffer
+ 		dma_async_issue_pending(dma->dma);
+ 
+ 		/* Start the pipeline. */
+-- 
+2.40.0
+

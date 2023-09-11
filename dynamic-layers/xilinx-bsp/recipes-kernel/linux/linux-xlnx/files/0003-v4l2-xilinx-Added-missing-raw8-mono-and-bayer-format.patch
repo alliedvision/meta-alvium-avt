@@ -1,0 +1,93 @@
+From 22e60864685245c08d99ff0324e113cfb26857bb Mon Sep 17 00:00:00 2001
+From: Dennis Langenkamp <dennis.langenkamp@alliedvision.com>
+Date: Tue, 5 Sep 2023 14:18:46 +0200
+Subject: [PATCH 3/6] v4l2: xilinx: Added missing raw8 mono and bayer formats
+
+The xilinx frame buffer read/write driver now supports bayer8 formats.
+Fixed rggb bayer8 format in xilinx-vip driver.
+Added Grey/Mono8 support to xilinx csi rx subsystem driver.
+---
+ drivers/dma/xilinx/xilinx_frmbuf.c            | 40 +++++++++++++++++++
+ .../media/platform/xilinx/xilinx-csi2rxss.c   |  1 +
+ drivers/media/platform/xilinx/xilinx-vip.c    |  2 +-
+ 3 files changed, 42 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/dma/xilinx/xilinx_frmbuf.c b/drivers/dma/xilinx/xilinx_frmbuf.c
+index 29cbe41d740d..51e9103fe9dc 100644
+--- a/drivers/dma/xilinx/xilinx_frmbuf.c
++++ b/drivers/dma/xilinx/xilinx_frmbuf.c
+@@ -412,6 +412,46 @@ static const struct xilinx_frmbuf_format_desc xilinx_frmbuf_formats[] = {
+ 		.v4l2_fmt = V4L2_PIX_FMT_GREY,
+ 		.fmt_bitmask = BIT(16),
+ 	},
++	{
++		.dts_name = "y8",
++		.id = XILINX_FRMBUF_FMT_Y8,
++		.bpw = 32,
++		.ppw = 4,
++		.num_planes = 1,
++		.drm_fmt = DRM_FORMAT_Y8,
++		.v4l2_fmt = V4L2_PIX_FMT_SRGGB8,
++		.fmt_bitmask = BIT(16),
++	},
++	{
++		.dts_name = "y8",
++		.id = XILINX_FRMBUF_FMT_Y8,
++		.bpw = 32,
++		.ppw = 4,
++		.num_planes = 1,
++		.drm_fmt = DRM_FORMAT_Y8,
++		.v4l2_fmt = V4L2_PIX_FMT_SGRBG8,
++		.fmt_bitmask = BIT(16),
++	},
++	{
++		.dts_name = "y8",
++		.id = XILINX_FRMBUF_FMT_Y8,
++		.bpw = 32,
++		.ppw = 4,
++		.num_planes = 1,
++		.drm_fmt = DRM_FORMAT_Y8,
++		.v4l2_fmt = V4L2_PIX_FMT_SGBRG8,
++		.fmt_bitmask = BIT(16),
++	},
++	{
++		.dts_name = "y8",
++		.id = XILINX_FRMBUF_FMT_Y8,
++		.bpw = 32,
++		.ppw = 4,
++		.num_planes = 1,
++		.drm_fmt = DRM_FORMAT_Y8,
++		.v4l2_fmt = V4L2_PIX_FMT_SBGGR8,
++		.fmt_bitmask = BIT(16),
++	},
+ 	{
+ 		.dts_name = "y10",
+ 		.id = XILINX_FRMBUF_FMT_Y10,
+diff --git a/drivers/media/platform/xilinx/xilinx-csi2rxss.c b/drivers/media/platform/xilinx/xilinx-csi2rxss.c
+index 845a434c9397..84fa4afdb72c 100644
+--- a/drivers/media/platform/xilinx/xilinx-csi2rxss.c
++++ b/drivers/media/platform/xilinx/xilinx-csi2rxss.c
+@@ -178,6 +178,7 @@ static const u32 xcsi2dt_mbus_lut[][2] = {
+ 	{ MIPI_CSI2_DT_RGB888, MEDIA_BUS_FMT_RBG888_1X24 },
+ 	{ MIPI_CSI2_DT_RAW6, 0 },
+ 	{ MIPI_CSI2_DT_RAW7, 0 },
++	{ MIPI_CSI2_DT_RAW8, MEDIA_BUS_FMT_Y8_1X8 },
+ 	{ MIPI_CSI2_DT_RAW8, MEDIA_BUS_FMT_SRGGB8_1X8 },
+ 	{ MIPI_CSI2_DT_RAW8, MEDIA_BUS_FMT_SBGGR8_1X8 },
+ 	{ MIPI_CSI2_DT_RAW8, MEDIA_BUS_FMT_SGBRG8_1X8 },
+diff --git a/drivers/media/platform/xilinx/xilinx-vip.c b/drivers/media/platform/xilinx/xilinx-vip.c
+index 9c7994f9946e..5651e9106265 100644
+--- a/drivers/media/platform/xilinx/xilinx-vip.c
++++ b/drivers/media/platform/xilinx/xilinx-vip.c
+@@ -103,7 +103,7 @@ static const struct xvip_video_format xvip_video_formats[] = {
+ 	{ XVIP_VF_Y_GREY, 16, NULL, MEDIA_BUS_FMT_Y16_1X16,
+ 	  2, 16, V4L2_PIX_FMT_Y16, 1, 1, 1, 1 },
+ 	{ XVIP_VF_MONO_SENSOR, 8, "rggb", MEDIA_BUS_FMT_SRGGB8_1X8,
+-	  1, 8, V4L2_PIX_FMT_SGRBG8, 1, 1, 1, 1 },
++	  1, 8, V4L2_PIX_FMT_SRGGB8, 1, 1, 1, 1 },
+ 	{ XVIP_VF_MONO_SENSOR, 8, "grbg", MEDIA_BUS_FMT_SGRBG8_1X8,
+ 	  1, 8, V4L2_PIX_FMT_SGRBG8, 1, 1, 1, 1 },
+ 	{ XVIP_VF_MONO_SENSOR, 8, "gbrg", MEDIA_BUS_FMT_SGBRG8_1X8,
+-- 
+2.40.0
+
