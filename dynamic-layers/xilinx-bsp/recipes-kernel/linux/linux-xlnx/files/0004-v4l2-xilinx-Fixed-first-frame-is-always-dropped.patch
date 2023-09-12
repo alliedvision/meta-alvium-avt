@@ -1,0 +1,40 @@
+From 9994a14643f75cb94680ab00a8ad8dff829e7965 Mon Sep 17 00:00:00 2001
+From: Dennis Langenkamp <dennis.langenkamp@alliedvision.com>
+Date: Tue, 5 Sep 2023 14:22:46 +0200
+Subject: [PATCH 4/6] v4l2: xilinx: Fixed: first frame is always dropped
+
+The driver for the xilinx framebuffer write ip core was previously always dropping the first frame. This now fixed by requesting a second dma transfer on the stream start. This is necessary, because otherwise there would be only a staged transfer in the frmbuf driver and not an active transfer.
+---
+ drivers/dma/xilinx/xilinx_frmbuf.c         | 2 +-
+ drivers/media/platform/xilinx/xilinx-dma.c | 2 ++
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/dma/xilinx/xilinx_frmbuf.c b/drivers/dma/xilinx/xilinx_frmbuf.c
+index 51e9103fe9dc..e0505b451af6 100644
+--- a/drivers/dma/xilinx/xilinx_frmbuf.c
++++ b/drivers/dma/xilinx/xilinx_frmbuf.c
+@@ -1265,7 +1265,7 @@ static void xilinx_frmbuf_start_transfer(struct xilinx_frmbuf_chan *chan)
+ 
+ 	xdev = container_of(chan, struct xilinx_frmbuf_device, chan);
+ 
+-	if (!chan->idle)
++	if (!chan->idle && chan->active_desc != NULL)
+ 		return;
+ 
+ 	if (chan->staged_desc) {
+diff --git a/drivers/media/platform/xilinx/xilinx-dma.c b/drivers/media/platform/xilinx/xilinx-dma.c
+index 528df7beddad..11594cf921c3 100644
+--- a/drivers/media/platform/xilinx/xilinx-dma.c
++++ b/drivers/media/platform/xilinx/xilinx-dma.c
+@@ -562,6 +562,8 @@ static int xvip_dma_start_streaming(struct vb2_queue *vq, unsigned int count)
+ 	 */
+ 	if (!dma->low_latency_cap) {
+ 		dma_async_issue_pending(dma->dma);
++		//XXX: Run a second issue pending to have one active buffer
++		dma_async_issue_pending(dma->dma);
+ 
+ 		/* Start the pipeline. */
+ 		ret = xvip_pipeline_set_stream(pipe, true);
+-- 
+2.40.0
+
