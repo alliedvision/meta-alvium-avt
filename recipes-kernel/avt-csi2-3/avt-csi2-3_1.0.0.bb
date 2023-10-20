@@ -17,10 +17,10 @@ PV = "1.0.0+git${SRCPV}"
 # The inherit of module.bbclass will automatically name module packages with
 # "kernel-module-" prefix as required by the oe-core build environment.
 
-RPROVIDES_${PN} += "kernel-module-avt-csi2-3"
+RPROVIDES:${PN} += "kernel-module-avt-csi2-3"
 
-FILES_${PN} += "${libdir}/modules/${KERNEL_VERSION}/extra/*.ko"
-#FILES_${PN} += "${nonarch_base_libdir}/modules/${KERNEL_VERSION}/extra/*.ko"
+FILES:${PN} += "${libdir}/modules/${KERNEL_VERSION}/extra/*.ko"
+#FILES:${PN} += "${nonarch_base_libdir}/modules/${KERNEL_VERSION}/extra/*.ko"
 
 LOCALVERSION = "1.0.0"
 KERNEL_MODULE_AUTOLOAD += "avt-csi2-3"
