@@ -1,7 +1,4 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}/imx:"
-#${THISDIR}/../avt-csi2-3/files/:${THISDIR}/../ds90ub95xq1/files/:"
-
-#$${THISDIR}/${PN}/files:${THISDIR}/${PN}/msc:${THISDIR}/${PV}:${THISDIR}/${LINUX_VERSION}:"
 
 require recipes-kernel/linux/linux-avt-common.inc
 
@@ -34,7 +31,7 @@ DELTA_KERNEL_DEFCONFIG:imx8mqevk += "iio_ina.cfg "
 DELTA_KERNEL_DEFCONFIG:imx8mqevk += "alvium_kernel_mod.cfg "
 DELTA_KERNEL_DEFCONFIG:imx8mqevk += "adv_v4l_dbg.cfg"
 
-KERNEL_MODULE_AUTOLOAD += "avt-csi2-3"
+KERNEL_MODULE_AUTOLOAD += "avt-csi2"
 KERNEL_MODULE_AUTOLOAD += "ina260-adc"
 
 #####https://source.codeaurora.org/external/imx/imx-manifest/tree/README?h=imx-linux-hardknott

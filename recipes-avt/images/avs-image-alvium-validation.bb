@@ -43,7 +43,7 @@ CORE_IMAGE_EXTRA_INSTALL += " v4l-utils "
 CORE_IMAGE_EXTRA_INSTALL += " htop lsof "
 #CORE_IMAGE_EXTRA_INSTALL += " pwm-tlc59711 "
 #CORE_IMAGE_EXTRA_INSTALL += " pwm-tlc5947 "
-CORE_IMAGE_EXTRA_INSTALL += " avt-csi2-3 "
+CORE_IMAGE_EXTRA_INSTALL += " avt-csi2 "
 CORE_IMAGE_EXTRA_INSTALL += " v4l2viewer "
 CORE_EXTRA_IMAGE_INSTALL += " python3-configargparse "
 
