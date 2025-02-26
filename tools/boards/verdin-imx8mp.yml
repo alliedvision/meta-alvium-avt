@@ -20,6 +20,7 @@ repos:
       meta-oe:
       meta-filesystems:
       meta-networking:
+      meta-multimedia:
       meta-python:
   meta-freescale-distro:
     path: toradex-bsp/layers/meta-freescale-distro
