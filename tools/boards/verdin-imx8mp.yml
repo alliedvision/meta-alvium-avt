@@ -46,4 +46,10 @@ repos:
     path: sources/meta-alvium-avt
   meta-toradex-avt:
     path: sources/meta-toradex-avt
-  
+
+
+local_conf_header:
+#  Some packages for the NXP SoCs require the NXP/Freescale EULA available in "toradex-bsp/layers/meta-freescale/EULA" to be read and accepted.
+#  After you have read the EULA you can accept it by uncommenting the following lines.
+#  accept-fsl-eula: |
+#    ACCEPT_FSL_EULA = "1"  
