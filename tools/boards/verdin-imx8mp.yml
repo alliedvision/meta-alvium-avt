@@ -1,0 +1,48 @@
+header:
+  version: 14
+
+distro: tdx-xwayland
+machine: verdin-imx8mp
+target: tdx-reference-multimedia-image
+
+repos:
+  meta-toradex-nxp:
+    path: toradex-bsp/layers/meta-toradex-nxp
+  meta-freescale:
+    path: toradex-bsp/layers/meta-freescale
+  meta-freescale-3rdparty:
+    path: toradex-bsp/layers/meta-freescale-3rdparty
+  meta-toradex-bsp-common:
+    path: toradex-bsp/layers/meta-toradex-bsp-common
+  meta-openembedded:
+    path: toradex-bsp/layers/meta-openembedded
+    layers: 
+      - meta-oe
+      - meta-filesystems
+      - meta-networking
+      - meta-python
+  meta-freescale-distro:
+    path: toradex-bsp/layers/meta-freescale-distro
+  meta-toradex-demos:
+    path: toradex-bsp/layers/meta-toradex-demos
+  meta-qt5:
+    path: toradex-bsp/layers/meta-qt5
+  meta-security:
+    path: toradex-bsp/layers/meta-security
+    layers:
+      - meta-tpm
+  meta-toradex-distro:
+    path: toradex-bsp/layers/meta-toradex-distro
+  meta-yocto:
+    path: toradex-bsp/layers/meta-yocto
+    layers:
+      - meta-poky
+  openmebedded-core:
+    path: toradex-bsp/layers/openembedded-core
+    layers:
+      - meta
+  meta-alvium-avt:
+    path: sources/meta-alvium-avt
+  meta-toradex-avt:
+    path: sources/meta-toradex-avt
+  
