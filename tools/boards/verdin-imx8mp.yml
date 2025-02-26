@@ -17,10 +17,10 @@ repos:
   meta-openembedded:
     path: toradex-bsp/layers/meta-openembedded
     layers: 
-      - meta-oe
-      - meta-filesystems
-      - meta-networking
-      - meta-python
+      meta-oe:
+      meta-filesystems:
+      meta-networking:
+      meta-python:
   meta-freescale-distro:
     path: toradex-bsp/layers/meta-freescale-distro
   meta-toradex-demos:
@@ -30,17 +30,17 @@ repos:
   meta-security:
     path: toradex-bsp/layers/meta-security
     layers:
-      - meta-tpm
+      meta-tpm:
   meta-toradex-distro:
     path: toradex-bsp/layers/meta-toradex-distro
   meta-yocto:
     path: toradex-bsp/layers/meta-yocto
     layers:
-      - meta-poky
+      meta-poky:
   openmebedded-core:
     path: toradex-bsp/layers/openembedded-core
     layers:
-      - meta
+      meta:
   meta-alvium-avt:
     path: sources/meta-alvium-avt
   meta-toradex-avt:
