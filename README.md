@@ -9,7 +9,7 @@ This release is tested with:
 
 ## Getting started
 For getting started please use one of the reference image manifest repositories:
-- - Toradex Verdin iMX8M Plus: [alvium-manifest-toradex](https://github.com/alliedvision/alvium-manifest-toradex)
+- Toradex Verdin iMX8M Plus: [alvium-manifest-toradex](https://github.com/alliedvision/alvium-manifest-toradex)
 
 ## Maintainers, Mailing list, Patches
 
