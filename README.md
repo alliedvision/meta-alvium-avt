@@ -1,3 +1,6 @@
+> [!IMPORTANT]  
+> This repository is deprecated and replaced by [meta-alliedvision](https://github.com/alliedvision/meta-alliedvision).
+
 # meta-alvium-avt
 
 This layer provides support for Alvium MIPI-CSI2 cameras.
